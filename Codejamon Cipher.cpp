@@ -89,9 +89,9 @@ int main() {
     for (int tt = 1; tt <= t; tt++) {
         memset(dp, 0, sizeof(dp));
         m.clear();
-        int v = 0, s = 0;
-        cin >> v >> s;
-        for(int i = 0;i < v; ++ i){
+        int V = 0, S = 0;
+        cin >> V >> S;
+        for(int i = 0;i < V; ++ i){
             cin >> str;
             vector<int> v(26);
             for(char c : str)
@@ -99,7 +99,7 @@ int main() {
             m[v] ++;
         }
         cout << "Case #" << tt << ":";
-        for(int i = 0;i < s; ++ i){
+        for(int i = 0;i < S; ++ i){
             dp[0] = 1;
             cin >> str;
             for(int j = 0;j < str.size(); ++ j){
