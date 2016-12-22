@@ -23,6 +23,7 @@
  样例输出
  2
  */
+// dp[n] 表示以 ‘a’ + n 字符为结尾的最长满足要求字符串的长度。字符串动规问题很多都可以考虑以26个字符来做一个维度，有奇效。
 #include <bits/stdc++.h>
 using namespace std;
 int cf[26][26];
