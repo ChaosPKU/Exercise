@@ -110,6 +110,7 @@ struct HuffmanTree{
     }
 };
 
+// 依据词频构造哈希表
 unordered_map<char, float> construct(vector<char> word, vector<float> freq){
     unordered_map<char, float> udp;
     int n = (int)word.size();
