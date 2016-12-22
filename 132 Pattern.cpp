@@ -22,7 +22,7 @@ Output: True
 
 Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
 */
-
+// 先找到符合条件的S3，即存在一个S2比它大，并不断更新其最大值，当遇到比S3小的数的时候就完成了任务。
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
