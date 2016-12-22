@@ -40,6 +40,7 @@ In case #1, the optimal solution is to write 3 as 11 in base 2.
 
 In case #2, the optimal solution is to write 13 as 111 in base 3. Note that we could also write 13 as 11 in base 12, but neither of those representations has as many 1s.
 */
+// N-1必定符合要求，剩下的只能靠遍历Check。但值得注意的是并不需要遍历1~N-2,数值越大满足条件的数值越稀疏，可以手动筛选。
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
