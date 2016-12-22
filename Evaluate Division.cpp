@@ -15,6 +15,7 @@ values = [2.0, 3.0],
 queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ]. 
 The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
 */
+// 用并查集的思路，将有关系的变量并到一起，集合代表元素的rak为1，其他元素的rak基于其value计算相应值。Union过程中的合并策略是无归属元素并到有归属元素的集合中，在Find过程中更新元素的rak。
 class Solution {
 public:
     unordered_map<string, int> udmp;
