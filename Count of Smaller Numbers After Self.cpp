@@ -13,6 +13,7 @@ Return the array [2, 1, 1, 0].
 */
 
 // Merge Sort Version
+// 某个数字之后比它小的数字个数等于在merge sort过程中排序从后到前超过该数的数字个数。
 /*
 class Solution {
 public:
