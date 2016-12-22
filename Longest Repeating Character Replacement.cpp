@@ -26,7 +26,7 @@ Explanation:
 Replace the one 'A' in the middle with 'B' and form "AABBBBA".
 The substring "BBBB" has the longest repeating letters, which is 4.
 */
-
+// 我们只关心最长合法子串，所以滑动窗口可以只增长不减少，即使窗口覆盖了一个不合法子串。因此，我们也不必关心窗内精确的最频繁字符，只需要关注新来的字符是否成为了新的最频繁字符即可。
 class Solution {
 public:
     int characterReplacement(string s, int k) {
