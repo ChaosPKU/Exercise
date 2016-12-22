@@ -20,6 +20,7 @@ Explanation:
 or
 7 -> 6 -> 3 -> 2 -> 1
 */
+//从二进制编码角度考虑问题，两种方式(1)n->n/2,(2)n->n+1,(3)n->n-1,在XX不为空的前提下,XX10形式必定(1),XX11形式必定先(2)后(1),XX01形式必定先(3)后(1)。
 class Solution {
 public:
     int integerReplacement(int n) {
