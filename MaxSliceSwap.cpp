@@ -84,7 +84,6 @@ int solution(vector<int> &A) {
     }
     answer = max(answer,help(A));
     return answer;
-    
 }
 
 int main(){
