@@ -13,7 +13,6 @@ Output: 28
 
 Explanation: The maximum result is 5 ^ 25 = 28.
 */
-
 class Solution {
 public:
     int findMaximumXOR(vector<int>& nums) {
