@@ -37,7 +37,6 @@ Large dataset
 1 ≤ I ≤ J ≤ 1018.
 Sample
 
-
 Input 
     
 Output 
