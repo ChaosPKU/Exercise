@@ -17,6 +17,7 @@ The length sum of elements in the given array will not exceed 600,000.
 All the input string will only include lower case letters.
 The returned elements order does not matter.
 */
+//用Hash表来加速DFS
 class Solution {
 public:
     bool check(const unordered_set<string> &udmp, const string &s, int b, int cnt, unordered_set<string> &hashset){
