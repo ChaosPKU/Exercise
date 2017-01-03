@@ -161,7 +161,7 @@ private:
 
 class Solution {
 public:
-    void InsertSort(vector<int>& nums, int l, int r){
+    void InsertSort(vector<int>& nums, int l, int r){ //快速排序
         for(int i = l + 1; i <= r; ++ i){
             if(nums[i - 1] < nums[i]){
                 int tmp = nums[i], j = i;
@@ -173,7 +173,7 @@ public:
             }
         }
     }
-    int FindMid(vector<int> &nums, int l, int r){
+    int FindMid(vector<int> &nums, int l, int r){ //寻找分段中位数的中位数
         if(l == r) return nums[l];
         int i = 0, n = 0;
         for(i = l; i < r - 5; i += 5){
