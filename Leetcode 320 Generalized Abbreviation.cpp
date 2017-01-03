@@ -14,7 +14,7 @@ public:
         if(b == word.size()){
             res.push_back(s);
             return;
-        }1
+        }
         string tmp = s;
         if(!last)
             for(int i = word.size() - 1;i >= b; -- i){
