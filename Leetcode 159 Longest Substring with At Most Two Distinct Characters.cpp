@@ -5,7 +5,6 @@ For example, Given s = “eceba”,
 
 T is "ece" which its length is 3.
 */
-
 class Solution {
 public:
     int lengthOfLongestSubstringTwoDistinct(string s) {
