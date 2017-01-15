@@ -1,14 +1,15 @@
 /*
 Implement a basic calculator to evaluate a simple expression string.
 
-The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.
 
 You may assume that the given expression is always valid.
 
 Some examples:
-"1 + 1" = 2
-" 2-1 + 2 " = 3
-"(1+(4+5+2)-3)+(6+8)" = 23
+"3+2*2" = 7
+" 3/2 " = 1
+" 3+5 / 2 " = 5
+Note: Do not use the eval built-in library function.
 */
 
 class Solution {
