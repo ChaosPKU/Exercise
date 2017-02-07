@@ -82,3 +82,24 @@ int main(){
     fclose(stdout);
     return 0;
 }
+
+// Leetcode 483 Smallest Good Base
+
+class Solution {
+public:
+    bool check(long long n, long long &i){
+        while(n){
+            if(n % i != 1) return false;
+            n /= i;
+        }
+        return true;
+    }
+    string smallestGoodBase(string n) {
+        long long num = stol(n), cnt = 1, i = 0;
+        while(++ cnt){
+            i = (int)pow(num, 1.0/cnt);
+            if(i == 1) return to_string(num - 1);
+            if(check(num, i)) return to_string(i);
+        }
+    }
+};
