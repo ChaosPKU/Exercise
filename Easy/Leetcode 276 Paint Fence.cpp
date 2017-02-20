@@ -11,6 +11,7 @@ n and k are non-negative integers.
 
 //dp1[i]表示当前位置i涂的颜色与上一个涂的颜色相同时候的方法数，dp2[]表示当前涂的颜色与上一个涂的颜色不同时候的方法数。
 //dp1[i] = dp2[i-1]，dp2[i] = (k - 1) * (dp1[i - 1] + dp2[i - 1]);
+
 class Solution {
 public:
     int numWays(int n, int k) {
