@@ -27,6 +27,7 @@
  
  0 ≤ M < N ≤ 2000.
  */
+// 令P(i, j)表示概率，N(i, j)表示方法数。显然，i<=j时，P(i, j)=0, i>0,j=0时，P(i, j)=1。N(i, j) = N(i - 1, j) + N(i, j - 1)。P(i, j) = N(i , j) / ((i+j)! / i!j!)。由此，可得P的递推式。
 #include <bits/stdc++.h>
 #include <stdio.h>
 using namespace std;
