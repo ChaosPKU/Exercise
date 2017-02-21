@@ -77,7 +77,6 @@ public:
     }
 };
 
-
 // Your NumArray object will be instantiated and called as such:
 // NumArray numArray(nums);
 // numArray.sumRange(0, 1);
