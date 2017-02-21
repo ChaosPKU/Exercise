@@ -12,6 +12,7 @@ Input:
 Output:
 [[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]
 */
+
 class Solution {
 public:
     static bool cmp(const pair<int, int> &a, const pair<int, int> &b){
