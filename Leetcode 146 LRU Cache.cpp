@@ -6,6 +6,47 @@ set(key, value) - Set or insert the value if the key is not already present. Whe
 */
 
 class LRUCache{
+private:
+    list<pair<int, int>> used;  // <key, value>
+    unordered_map<int, list<pair<int, int>>::iterator> cache;  // key -> {key, value}
+    int capacity;
+    void touch(unordered_map<int, list<pair<int, int>>::iterator>::iterator it) {
+        int key = it->first,value = it->second->second;
+        used.erase(it->second);
+        used.push_front({key, value});
+        it->second = used.begin();
+    }
+public:
+    LRUCache(int c) {
+        capacity = c;
+    }
+    
+    int get(int key) {
+        auto it = cache.find(key);
+        if (it == cache.end()) return -1;
+        touch(it);
+        return it->second->second;
+    }
+    
+    void put(int key, int value) {
+        auto it = cache.find(key);
+        if (it != cache.end()) {
+            touch(it);
+            it->second->second = value;
+        }
+        else {
+			if (cache.size() == capacity) {
+				cache.erase(used.back().first);
+				used.pop_back();
+			}
+            used.push_front({key, value});
+            cache[key] = used.begin();
+        }
+    }
+  };
+  
+
+class LRUCache{
   private:
     int capacity;
     int counter;
