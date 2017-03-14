@@ -69,30 +69,6 @@ bool compare(const Point &a, const Point &b){
 }
 
 double solve(Point *points, int b, int e){
-#include <stdio.h>
-#include <math.h>
-#include <algorithm>
-#include <iostream>
-using namespace std;
-
-int T, N;
-const double maxdis = 1e11;
-
-struct Point{
-    double x, y;
-    bool flag;
-}p[200010], t[200010];
-
-double getDistance(const Point &a, const Point &b){
-    if(a.flag == b.flag) return maxdis;
-    return sqrt(pow(a.x - b.x, 2.0) + pow(a.y - b.y, 2.0));
-}
-
-bool compare(const Point &a, const Point &b){
-    return a.x == b.x ? a.y < b.y : a.x < b.x;
-}
-
-double solve(Point *points, int b, int e){
     if(b == e) return maxdis;
     if(b + 1 == e) {
         if(points[b].y > points[e].y) swap(points[b], points[e]);
@@ -140,9 +116,6 @@ int main(){
     return 0;
 }
 
-    }
-    return 0;
-}
 
 //分治
 #include <stdio.h>
