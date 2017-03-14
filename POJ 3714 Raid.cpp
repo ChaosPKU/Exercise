@@ -43,6 +43,78 @@ Sample Output
 0.000
 */
 
+
+//分治+归并
+#include <stdio.h>
+#include <math.h>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+int T, N;
+const double maxdis = 1e11;
+
+struct Point{
+    double x, y;
+    bool flag;
+}p[200010], t[200010];
+
+double getDistance(const Point &a, const Point &b){
+    if(a.flag == b.flag) return maxdis;
+    return sqrt(pow(a.x - b.x, 2.0) + pow(a.y - b.y, 2.0));
+}
+
+bool compare(const Point &a, const Point &b){
+    return a.x == b.x ? a.y < b.y : a.x < b.x;
+}
+
+double solve(Point *points, int b, int e){
+    if(b == e) return maxdis;
+    if(b + 1 == e) {
+        if(points[b].y > points[e].y) swap(points[b], points[e]);
+        return getDistance(points[b], points[e]);
+    }
+    int m = b + (e - b) / 2;
+    double res = min(solve(points, b, m), solve(points, m + 1, e));
+
+    int c = 0, i = b, j = m + 1, ic = 0;
+    int idx[100010];
+    while(i <= m && j <= e)
+        if(points[i].y > points[j].y) t[c ++] = points[j ++];
+        else t[c ++] = points[i ++];
+    while(i <= m) t[c ++] = points[i ++];
+    while(j <= e) t[c ++] = points[j ++];
+    for(int i = 0;i < c; ++ i) {
+        if(fabs(t[i].x - points[m].x) < res) idx[ic ++] = b + i;
+        points[b + i] = t[i];
+    }
+    
+    for(int i = 0;i < ic - 1; ++ i)
+        for(int j = i + 1;j < ic && points[j].y - points[i].y < res; ++ j)
+            res = min(res, getDistance(points[i], points[j]));
+    
+    return res;
+}
+
+int main(){
+    scanf("%d", &T);
+    while(T --){
+        scanf("%d", &N);
+        for(int i = 0;i < N; ++ i){
+            scanf("%lf%lf", &p[i].x, &p[i].y);
+            p[i].flag = 0;
+        }
+        for(int i = N;i < 2 * N; ++ i){
+            scanf("%lf%lf", &p[i].x, &p[i].y);
+            p[i].flag = 1;
+        }
+        
+        sort(p, p + 2 * N, compare);
+        printf("%.3f\n", solve(p, 0, 2 * N - 1));
+    }
+    return 0;
+}
+
 //分治
 #include <stdio.h>
 #include <math.h>
