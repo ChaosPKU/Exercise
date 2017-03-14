@@ -69,6 +69,30 @@ bool compare(const Point &a, const Point &b){
 }
 
 double solve(Point *points, int b, int e){
+#include <stdio.h>
+#include <math.h>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+int T, N;
+const double maxdis = 1e11;
+
+struct Point{
+    double x, y;
+    bool flag;
+}p[200010], t[200010];
+
+double getDistance(const Point &a, const Point &b){
+    if(a.flag == b.flag) return maxdis;
+    return sqrt(pow(a.x - b.x, 2.0) + pow(a.y - b.y, 2.0));
+}
+
+bool compare(const Point &a, const Point &b){
+    return a.x == b.x ? a.y < b.y : a.x < b.x;
+}
+
+double solve(Point *points, int b, int e){
     if(b == e) return maxdis;
     if(b + 1 == e) {
         if(points[b].y > points[e].y) swap(points[b], points[e]);
@@ -84,14 +108,15 @@ double solve(Point *points, int b, int e){
         else t[c ++] = points[i ++];
     while(i <= m) t[c ++] = points[i ++];
     while(j <= e) t[c ++] = points[j ++];
-    for(int i = 0;i < c; ++ i) {
-        if(fabs(t[i].x - points[m].x) < res) idx[ic ++] = b + i;
+    int midx = points[m].x;
+    for(i = 0;i < c; ++ i) {
         points[b + i] = t[i];
+        if(fabs(t[i].x - midx) <= res) idx[ic ++] = b + i;
     }
     
-    for(int i = 0;i < ic - 1; ++ i)
-        for(int j = i + 1;j < ic && points[j].y - points[i].y < res; ++ j)
-            res = min(res, getDistance(points[i], points[j]));
+    for(i = 0;i < ic - 1; ++ i)
+        for(j = i + 1;j < ic && points[idx[j]].y - points[idx[i]].y <= res; ++ j)
+            res = min(res, getDistance(points[idx[i]], points[idx[j]]));
     
     return res;
 }
@@ -111,6 +136,10 @@ int main(){
         
         sort(p, p + 2 * N, compare);
         printf("%.3f\n", solve(p, 0, 2 * N - 1));
+    }
+    return 0;
+}
+
     }
     return 0;
 }
