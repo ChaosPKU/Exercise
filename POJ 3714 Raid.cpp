@@ -56,6 +56,71 @@ const double maxdis = 1e11;
 struct Point{
     double x, y;
     bool flag;
+}p[200010], t[100010];
+
+double getDistance(const Point &a, const Point &b){
+    if(a.flag == b.flag) return maxdis;
+    return sqrt(pow(a.x - b.x, 2.0) + pow(a.y - b.y, 2.0));
+}
+
+bool compare(const Point &a, const Point &b){
+    return a.x == b.x ? a.y < b.y : a.x < b.x;
+}
+
+bool compare_y(const Point &a, const Point &b){
+    return a.y < b.y;
+}
+
+double solve(Point *points, int b, int e){
+    if(b == e) return maxdis;
+    if(b + 1 == e) return getDistance(points[b], points[e]);
+    int m = b + (e - b) / 2;
+    double res = min(solve(points, b, m), solve(points, m + 1, e));
+    
+    int tc = 0;
+    for(int i = b;i <= e; ++ i)
+        if(fabs(points[m].x - points[i].x) < res)
+            t[tc ++] = points[i];
+    
+    sort(t, t + tc, compare_y);
+    for(int i = 0;i < tc - 1; ++ i)
+        for(int j = i + 1;j < tc && t[j].y - t[i].y < res; ++ j)
+            res = min(res, getDistance(t[i], t[j]));
+    return res;
+}
+
+int main(){
+    scanf("%d", &T);
+    while(T --){
+        scanf("%d", &N);
+        for(int i = 0;i < N; ++ i){
+            scanf("%lf%lf", &p[i].x, &p[i].y);
+            p[i].flag = 0;
+        }
+        for(int i = N;i < 2 * N; ++ i){
+            scanf("%lf%lf", &p[i].x, &p[i].y);
+            p[i].flag = 1;
+        }
+        
+        sort(p, p + 2 * N, compare);
+        printf("%.3f\n", solve(p, 0, 2 * N - 1));
+    }
+    return 0;
+}
+
+//这个应该不对 但居然也能过
+#include <stdio.h>
+#include <math.h>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+int T, N;
+const double maxdis = 1e11;
+
+struct Point{
+    double x, y;
+    bool flag;
 }p[200010];
 
 double getDistance(const Point &a, const Point &b){
@@ -73,7 +138,7 @@ double solve(Point *points, int b, int e){
     int m = b + (e - b) / 2;
     double res = min(solve(points, b, m), solve(points, m, e));
     for(int i = m - 1;i >= b && points[m].x - points[i].x < res; -- i)
-        for(int j = m + 1; j <= e && points[j].x - points[m].x < res; ++ j)
+        for(int j = m + 1; j <= e && points[j].x - points[m].x < res && fabs(points[i].y - points[j].y) < res; ++ j)
             res = min(res, getDistance(points[i], points[j]));
     return res;
 }
