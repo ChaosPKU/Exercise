@@ -27,12 +27,16 @@
 80
 */
 
-// 问题的关键在于如何把O(n^2)的复杂度降低到O(nlogn)级别,这道题可以先把所有a&b可能的结果枚举出来，则对相同的a&b，a*b*a&b最大的就是a&b再乘以最大的a和b。
+// 问题的关键在于如何把O(n^2)的复杂度降低到O(nlogn)级别。
+
+
+
+// 一种思路可以先把所有a&b可能的结果枚举出来，则对相同的a&b，a*b*a&b最大的就是a&b再乘以最大的a和b。但复杂度很高。
 #include <iostream>
-#include <unordered_map>
-#include <math.h>
 #include <memory.h>
 using namespace std;
+
+int num[1 << 20][2];
 
 int main(){
     int T, N, A, K;
@@ -40,21 +44,22 @@ int main(){
     scanf("%d", &T);
     while(T --){
         scanf("%d", &N);
-        unordered_map<int, pair<int, int> > udmp;
+        memset(num, 0, sizeof(num));
         R = 0;
         while(N --){
             scanf("%d", &A);
             for(K = A; K > 0; K = A & (K - 1))
-                if(A >= udmp[K].first){
-                    udmp[K].second = udmp[K].first;
-                    udmp[K].first = A;
+                if(A >= num[K][0]){
+                    num[K][1] = num[K][0];
+                    num[K][0] = A;
                 }
-                else if(A > udmp[K].second)
-                    udmp[K].second = A;
+                else if(A > num[K][1])
+                    num[K][1] = A;
         }
-        for(auto p : udmp)
-            R = max(R, (long long)p.second.first * p.second.second * (p.second.first & p.second.second));
+        for(long long k = 1; k < 1 << 20; ++ k)
+            R = max(R, (long long)k * num[k][0] * num[k][1]);
         printf("%lld\n", R);
     }
     return 0;
 }
+
