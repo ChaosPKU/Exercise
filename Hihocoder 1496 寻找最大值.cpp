@@ -73,9 +73,9 @@ int main(){
         R = M = 0;
         for(int i = 0;i < N; ++ i){
             scanf("%d", &nums[i]);
-            M = max(M, highest_one_bit(nums[i]));
+            M = max(M, nums[i]);
         }
-        solve(nums, R, M);
+        solve(nums, R, highest_one_bit(M));
         printf("%lld\n", R);
     }
     return 0;
