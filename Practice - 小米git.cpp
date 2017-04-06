@@ -39,7 +39,7 @@ public:
      * @return 整型
      */
     int getSplitNode(vector<string> matrix, int indexA, int indexB) {
-		if(matrix.empty()) return -1;
+	if(matrix.empty()) return -1;
         int n = matrix.size();
         vector<TreeNode*> vtr;
         vector<bool> flags(n, 1);
