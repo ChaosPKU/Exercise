@@ -27,3 +27,21 @@ int main(){
     }
     return 0;
 }
+
+
+// https://www.zhihu.com/question/55445739
+// 这道题可以求出通项公式 P(n, i) = [i / 2] / ([n / 2] * [(n + 1) / 2])  可以根据上述DP推导过程用归纳法求得正确性，所以用通项公式来求代码复杂度就变成O(1)了([]表示下取整)
+
+#include <iostream>
+#include <vector>
+#include <iomanip>
+using namespace std;
+int main(){
+    int N, n, m;
+    cin >> N;
+    while(N -- ){
+        cin >> n >> m;
+        cout << setiosflags(ios::fixed) << setprecision(8) << (m / 2) / (double)((n / 2) * ((n + 1) / 2)) << endl;
+    }
+    return 0;
+}
