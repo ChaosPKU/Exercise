@@ -27,7 +27,7 @@ using namespace std;
 //    int len1 = (int)num1.size(), len2 = (int)num2.size(), len3 = (int)num2[0].size();
 //    if(num1.empty() || num2.empty())  throw "Empty Matrix!";
 //    if(num1[0].size() != len2) throw "Matrix Format Error!";
-//    vector<vector<int>> res(len1, vector<int>(len3, 0));
+//    vector<vector<T>> res(len1, vector<T>(len3, 0));
 //    for(int i = 0;i < len1; ++ i)
 //        for(int j = 0;j < len3; ++ j)
 //            for(int k = 0;k < len2; ++ k)
@@ -40,7 +40,7 @@ vector<vector<T>> matrix_multiply(vector<vector<T>> num1, vector<vector<T>> num2
     int len1 = (int)num1.size(), len2 = (int)num2.size(), len3 = (int)num2[0].size();
     if(num1.empty() || num2.empty())  throw "Empty Matrix!";
     if(num1[0].size() != len2) throw "Matrix Format Error!";
-    vector<vector<int>> res(len1, vector<int>(len3, 0));
+    vector<vector<T>> res(len1, vector<T>(len3, 0));
     for(int i = 0;i < len1; ++ i)
         for(int j = 0;j < len3; ++ j)
             for(int k = 0;k < len2; ++ k)
@@ -53,7 +53,7 @@ vector<vector<T>> matrix_power(vector<vector<T>> num, int n){
     if(num.empty()) throw "Empty Matrix!";
     int len1 = (int)num.size(), len2 = (int)num[0].size();
     if(len1 != len2) throw "Matrix Format Error!";
-    vector<vector<int>> res(len1, vector<int>(len2, 0));
+    vector<vector<T>> res(len1, vector<T>(len2, 0));
     for(int i = 0; i < len1; ++ i) res[i][i] = 1;
     while(n){
         if(n & 1) res = matrix_multiply(res, num);
