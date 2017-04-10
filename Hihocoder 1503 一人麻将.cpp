@@ -53,6 +53,33 @@ using namespace std;
 int num[108], col[108];
 int colors[4] = {0, 1, 2, 0};
 
+/*
+int DP(int tmp[]){
+    int dp[10][6][6] = {0};  // 前i位,从第i位刨去j个, 从第i-1位刨去k个, 最大
+    int i, j, k, t;
+    
+    memset(dp, 1 << 7, sizeof(dp));
+    dp[0][0][0] = 0;
+    
+    for(i = 1; i <= 2; ++ i)
+        for(j = tmp[i];j >= 0; -- j)
+            for(k = tmp[i - 1];k >= 0; -- k)
+                dp[i][j][k] = max(dp[i - 1][k][0] + (tmp[i] - j) / 3, 0);
+    
+    for(i = 3;i < 10; ++ i)
+        for(j = tmp[i];j >= 0; -- j)
+            for(k = tmp[i - 1];k >= 0; -- k){
+                dp[i][j][k] = max(dp[i][j + 1][k], dp[i][j][k + 1]);
+                dp[i][j][k] = max(0, dp[i][j][k]);
+                for(t = 1; t <= min(min(tmp[i - 1] - k, tmp[i - 2]), tmp[i] - j); ++ t)  // t 可以跟前两位组的链子数目
+                    dp[i][j][k] = max(dp[i][j][k], max(dp[i - 1][k + t][t], dp[i - 2][t][0]) + t + (tmp[i] - j - t >= 3));
+                dp[i][j][k] = max(dp[i][j][k], dp[i - 1][k][0] + (tmp[i] - j >= 3)); // 不跟前面组链子
+            }
+    
+    return dp[9][0][0];
+}
+*/
+
 void DFS(int tmp[], int &res, int counter, int begin){
     if(begin >= 10){
         res = max(res, counter);
