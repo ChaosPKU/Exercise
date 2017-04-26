@@ -55,3 +55,31 @@ public:
         return res->next;
     }
 };
+
+
+class Solution {
+private:
+    ListNode *reverse(ListNode *head, ListNode *tail){
+        if(!head) return NULL;
+        ListNode *prev = head, *ptr = head->next, *tmp = NULL;
+        while(ptr != tail){
+            tmp = ptr->next;
+            ptr->next = prev;
+            prev = ptr;
+            ptr = tmp;
+        }
+        head->next = NULL;
+        return prev;
+    }
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode *ptr = head, *new_head = NULL;
+        for(int i = 0;i < k; ++ i){
+            if(!ptr) return head;
+            ptr = ptr->next;
+        }
+        new_head = reverse(head, ptr);
+        head->next = reverseKGroup(ptr, k);
+        return new_head;
+    }
+};
